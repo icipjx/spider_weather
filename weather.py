@@ -80,6 +80,7 @@ if __name__ == '__main__':
                 month_url_list.append(month_url)
             # print month_url_list
             ####################动态加载某个城市的天气表格
+            #####tag为表头判断标志
             tag = 0
             for month_url in month_url_list:
                 logo = "下载" + city_name + "的数据。。。。"
@@ -112,9 +113,11 @@ if __name__ == '__main__':
                 j = 0
                 k = 2
                 for i in td:
+                    ###########九个单元格存为一个列表
                     if j < 9:
                         td_list.append(i.text())
                         if j == 8:
+                            ##########将该列表写入文件
                             csv_write(td_list, csv_name)
                             print td_list
                         j += 1
