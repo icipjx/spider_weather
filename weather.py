@@ -25,9 +25,6 @@ def csv_write(list,file_path):
     writer.writerow(list)
     csvFile2.close()
 
-
-
-
 if __name__ == '__main__':
     ###############动态加载相应地区网页
     city_names = raw_input("请输入地区名字（比如成都、北京）：")
@@ -56,7 +53,6 @@ if __name__ == '__main__':
         city_page_source = driver.page_source.encode('utf-8')
         driver.close()
 
-
     #####判断该地区有无天气数据###########
         ########地区首页表格
         string = re.findall("<tbody>(.*?)</tbody>",city_page_source,re.S)[0]
@@ -83,8 +79,6 @@ if __name__ == '__main__':
                 # print month_url
                 month_url_list.append(month_url)
             # print month_url_list
-            ################test################
-
             ####################动态加载某个城市的天气表格
             tag = 0
             for month_url in month_url_list:
@@ -102,7 +96,6 @@ if __name__ == '__main__':
                 ################匹配出表格标题
                 doc_th = pq( table_sec)
                 th = doc_th('th').items()
-
                 #########将表格题目存入列表
                 th_list = []
                 for i in th:
@@ -121,13 +114,10 @@ if __name__ == '__main__':
                 for i in td:
                     if j < 9:
                         td_list.append(i.text())
-
                         if j == 8:
                             csv_write(td_list, csv_name)
-
                             print td_list
                         j += 1
-
                     else:
                         td_list = []
                         td_list.append(i.text())
